@@ -1,0 +1,83 @@
+﻿{% extends "layout.html" %}
+{% block content %}
+<h1 class="myh"> Розклад заннять </h1>
+<div class="form1">
+    <form action="/info" method="POST">
+        {{ form.hidden_tag() }}
+        <p>
+            <h1> <label for="dateFrom">З</label></h1>
+            {{form.dateFrom}}
+        </p>
+        <br>
+        <p>
+            <h1><label for="dateTo"> По </label></h1>
+            {{form.dateTo}}
+        </p>
+        <p>
+            <select name="Groups">
+                {% for elem in vGroups %}
+                <option value="{{elem[0]}}">{{ elem[1] }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <button class="btn" type="submit"> Дізнатися </button>
+    </form>
+</div>
+{% if error %}
+<div class="error-block">
+    <p>
+        [ {{error}} ]
+    </p>
+</div>
+{% endif %}
+    {% for key in rangeDate %}
+<div id="day">
+    <span class="myDate"> {{ key.strftime('%d-%m-%Y' ) }} </span>
+    {% if not dateDic[key] %}
+    <div class="info header-shadow">
+        <div>
+            <p>
+                <span>8:00 - 16:00</span>
+                
+            </p>
+            <p>
+                <span>
+                    Немає пар.
+                </span>
+            </p>
+        </div>
+    </div>
+    {% else %}
+    {% for row in dateDic[key] %}
+    <div class="info header-shadow">
+        <div>
+            <p>
+                <span class="time"> {{ row[0] }} </span>
+                <span>{{ row[4] }}</span>
+            </p>
+            <p>
+                <span>
+                    {{ row[5] }}
+                </span>
+            </p>
+            <p>
+                <span>
+                    {{ row[6] }}
+                </span>
+            </p>
+            <p>
+                <span>{{ row[1] + " " +  row[2] + " " + row[3]}}</span>
+            </p>
+            <p>
+                <span>{{ row[7] }}-{{ row[8] }}</span>
+            </p>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+
+    {% endfor %}
+
+    {% endblock %}
+

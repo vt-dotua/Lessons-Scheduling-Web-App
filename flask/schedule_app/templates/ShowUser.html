@@ -1,0 +1,14 @@
+﻿{% extends "layout.html" %}
+{% block content %}
+<div class="ManuForShowTable clearfix">
+    <ul>
+        <li><a href="{{ url_for('ShowSubjects') }}">   Предмети  </a></li>
+        <li><a href="{{ url_for('ShowStudens') }}">    Студенти  </a></li>
+        <li><a href="{{ url_for('ShowTeachers') }}">   Викладачі </a></li>
+        <li><a href="{{ url_for('ShowGroups') }}">     Групи     </a></li>
+        <li><a href="{{ url_for('ShowClassrooms') }}"> Аудиторії </a></li>
+        <li><a href="{{ url_for('ShowLessons') }}">    Заняття      </a></li>
+        <li><a href="{{ url_for('ShowDepartment') }}"> Факультети</a></li>
+    </ul>
+</div>
+{% endblock %}

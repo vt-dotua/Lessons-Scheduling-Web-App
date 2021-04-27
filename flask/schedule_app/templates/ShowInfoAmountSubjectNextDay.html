@@ -1,0 +1,24 @@
+﻿{% extends "layout.html" %}
+{% block content %}
+<div class="ShowTable clearfix centerW mTop">
+
+    <h1 class="line_height35"> Дізнатися скільки дисциплін проводят завтра в корпусі X </h1>
+
+    <div class="formInfo">
+        <form action="/ShowInfoAmountSubjectNextDay" method="POST">
+            <p>
+                <h1> Оберіть корпус </h1>
+                <select name="Build">
+                    {% for elem in vBuild %}
+                    <option>{{ elem[1] }}</option>
+                    {% endfor %}
+                </select>
+            </p>
+            <button class="btn" type="submit"> Дізнатися </button>
+        </form>
+    </div>
+    {% if message %}
+    <h1> {{message}} </h1>
+    {% endif %}
+</div>
+{% endblock %}

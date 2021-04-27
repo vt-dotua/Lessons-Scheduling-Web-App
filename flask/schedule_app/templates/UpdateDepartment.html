@@ -1,0 +1,59 @@
+﻿{% extends "layout.html" %}
+{% block content %}
+<div class="ManuForShowTable clearfix">
+    <ul>
+        <li><a href="{{url_for('InsertLessons')}}"> Заняття  </a></li>
+        <li><a href="{{url_for('InsertSubjects')}}">   Предмети  </a></li>
+        <li><a href="{{url_for('InsertStudens')}}">    Студенти  </a></li>
+        <li><a href="{{url_for('InsertTeachers')}}">   Викладачі </a></li>
+        <li><a href="{{url_for('InsertGroups')}}"> Групи  </a></li>
+        <li><a href="{{ url_for('InsertClassrooms')}}"> Аудиторії </a></li>
+        <li><a href="{{ url_for('InsertDepartment')}}"> Факультети</a></li>
+    </ul>
+</div>
+
+<div class="ManuForShowTable clearfix top">
+    <h1 id="title"> Оберіть дію </h1>
+    <div class="center">
+        <ul>
+            <li><a href="{{ url_for('InsertDepartment')}}">   Додати  </a></li>
+            <li><a href="{{url_for('UpdateDepartment')}}">    Змінити  </a></li>
+            <li><a href="{{url_for('DeleteDepartment')}}">   Видалити </a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="manage-form top">
+    <form name="input_data" action="/UpdateDepartment" method="POST">
+        {{ form.hidden_tag() }}
+        <h1 id="title"> Змінити назву факультету</h1>
+        <p>
+            <ul>
+                <li>
+                    <h1> {{form.idF.label}} </h1>
+                    {{form.idF}}
+                    <datalist id="if">
+                        {% for a in vDepartment %}
+                        <option value="{{a[0]}}"> {{a[1]}} </option>
+                        {% endfor%}
+                    </datalist>
+                </li>
+            </ul>
+        </p>
+        <p>
+            <ul>
+                <li>
+                    <h1> {{form.facult.label}} </h1>
+                    {{form.facult}}
+                </li>
+            </ul>
+        </p>
+        {% if message%}
+        <div class="message">
+            {{message}}
+        </div>
+        {% endif %}
+        <button class="btn" type="submit"> Додати </button>
+    </form>
+</div>
+{% endblock %}

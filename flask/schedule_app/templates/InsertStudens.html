@@ -1,0 +1,76 @@
+﻿{% extends "layout.html" %}
+{% block content %}
+<div class="ManuForShowTable clearfix">
+    <ul>
+        <li><a href="{{url_for('InsertLessons')}}">    Заняття  </a></li>
+        <li><a href="{{url_for('InsertSubjects')}}">   Предмети  </a></li>
+        <li><a href="{{url_for('InsertStudens')}}">    Студенти  </a></li>
+        <li><a href="{{url_for('InsertTeachers')}}">   Викладачі </a></li>
+        <li><a href="{{url_for('InsertGroups')}}">     Групи  </a></li>
+        <li><a href="{{ url_for('InsertClassrooms')}}"> Аудиторії </a></li>
+        <li><a href="{{ url_for('InsertDepartment')}}"> Факультети</a></li>
+    </ul>
+</div>
+
+<div class="ManuForShowTable clearfix top">
+    <h1 id="title"> Оберіть дію </h1>
+    <div class="center">
+        <ul>
+            <li><a href="{{url_for('InsertStudens')}}">   Додати  </a></li>
+            <li><a href="{{url_for('UpdateStudens')}}">    Змінити  </a></li>
+            <li><a href="{{url_for('DeleteStudens')}}">   Видалити </a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="manage-form top">
+
+    <form name="input_data" action="/InsertStudens" method="POST">
+        {{ form.hidden_tag() }}
+        <h1 id="title"> Додати студента</h1>
+        <p>
+            <ul>
+                <li>
+                    <h1> {{form.idGroup.label}} </h1>
+                    {{form.idGroup}}
+                    <datalist id="ig">
+                        {% for g in vGroups %}
+                        <option value="{{g[0]}}"> {{g[1]}} | {{g[2]}} </option>
+                        {% endfor %}
+                    </datalist>
+                </li>
+            </ul>
+        </p>
+        <p>
+            <ul>
+                <li>
+                    <h1> {{form.surname.label}} </h1>
+                    {{form.surname}}
+                </li>
+            </ul>
+        </p>
+        <p>
+            <ul>
+                <li>
+                    <h1> {{form.name.label}} </h1>
+                    {{form.name}}
+                </li>
+            </ul>
+        </p>
+        <p>
+            <ul>
+                <li>
+                    <h1> {{form.ochestvo.label}} </h1>
+                    {{form.ochestvo}}
+                </li>
+            </ul>
+        </p>
+        {% if message%}
+        <div class="message">
+            {{message}}
+        </div>
+        {% endif %}
+        <button class="btn" type="submit"> Додати </button>
+    </form>
+</div>
+{% endblock %}

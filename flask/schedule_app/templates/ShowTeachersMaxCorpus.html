@@ -1,0 +1,28 @@
+﻿{% extends "layout.html" %}
+{% block content %}
+<div class="ShowTable clearfix centerW mTop">
+    <h1 class="line_height35">Викладачі які провели в цьому місяці найбільшу кількість пар в різних корпусах</h1>
+    {% if vListTeachers %}
+    <table class="fontSizeBig">
+        <tr>
+            <th>id</th>
+            <th>Призвище</th>
+            <th>І'мя</th>
+            <th>По батьку</th>
+            <th>MAX кількість</th>
+        </tr>
+        {% for v in vListTeachers %}
+        <tr>
+            <td>{{ v[0] }}</td>
+            <td>{{ v[1] }}</td>
+            <td>{{ v[2] }}</td>
+            <td>{{ v[3] }}</td>
+            <td>{{ v[4] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <h1> Викладачів не знайдено </h1>
+    {% endif %}
+</div>
+{% endblock %}

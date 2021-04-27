@@ -1,0 +1,121 @@
+﻿{% extends "layout.html" %}
+{% block content %}
+<div class="ManuForShowTable clearfix">
+    <ul>
+        <li><a href="{{url_for('InsertLessons')}}"> Заняття  </a></li>
+        <li><a href="{{url_for('InsertSubjects')}}">   Предмети  </a></li>
+        <li><a href="{{url_for('InsertStudens')}}">    Студенти  </a></li>
+        <li><a href="{{url_for('InsertTeachers')}}">   Викладачі </a></li>
+        <li><a href="{{url_for('InsertGroups')}}">     Групи     </a></li>
+        <li><a href="{{ url_for('InsertClassrooms')}}"> Аудиторії </a></li>
+        <li><a href="{{ url_for('InsertDepartment')}}"> Факультети</a></li>
+    </ul>
+</div>
+
+<div class="ManuForShowTable clearfix top">
+    <h1 id="title"> Оберіть дію </h1>
+    <div class="center">
+        <ul>
+            <li><a href="{{url_for('InsertLessons')}}">   Додати  </a></li>
+            <li><a href="{{url_for('UpdateLessons')}}">    Змінити  </a></li>
+            <li><a href="{{url_for('DeleteLessons')}}">   Видалити </a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="manage-form top">
+    <form name="input_data" action="/InsertLessons" method="POST">
+        {{ form.hidden_tag() }}
+        <h1 id="title"> Додати заняття</h1>
+        <p>
+            <ul>
+                <li>
+                    <h1> {{form.teacher.label}} </h1>
+                    {{form.teacher}}
+                    <datalist id="t">
+                        {% for a in vTeacher %}
+                        <option value="{{a[0]}}"> {{a[1] + " " +  a[2] + " "  + a[3]}} </option>
+                        {% endfor%}
+                    </datalist>
+                </li>
+                <li>
+                    <h1>{{ form.groups.label}}  </h1>
+                    {{ form.groups }}
+                    <datalist id="g">
+                        {% for g in vGroups %}
+                        <option value="{{g[0]}}"> {{g[1]}} </option>
+                        {% endfor%}
+                    </datalist>
+                </li>
+            </ul>
+        </p>
+        <p>
+            <ul>
+                <li>
+                    <h1>{{ form.subject.label}} </h1>
+                    {{ form.subject }}
+                    <datalist id="s">
+                        {% for s in vSubjects %}
+                        <option value="{{s[0]}}"> {{s[1]}} </option>
+                        {% endfor%}
+                    </datalist>
+                </li>
+            </ul>
+        </p>
+        <p>
+            <ul>
+                <li>
+                    <h1>{{ form.classroom.label}} </h1>
+                    {{ form.classroom }}
+                    <datalist id="c">
+                        {% for c in vClassrooms %}
+                        <option value="{{c[0]}}-{{c[1]}}">{{c[2]}} - {{c[1]}}</option>
+                        {% endfor%}
+                    </datalist>
+                </li>
+                <li>
+                    <select name="typelesson">
+                        <option disabled>Оберіть частоту</option>
+                        <option selected value="Лекція">Лекція</option>
+                        <option value="Практика">Практика</option>
+                    </select>
+                </li>
+            </ul>
+        </p>
+        <p>
+            <ul>
+                <li>
+                    <select name="para">
+                        <option disabled>Оберіть частоту</option>
+                        <option selected value="1">Перша пара</option>
+                        <option value="2">Друга пара</option>
+                        <option value="3">Третя пара</option>
+                        <option value="4">Четверта пара</option>
+                        <option value="5">П'ята пара</option>
+                    </select>
+                </li>
+                <li>
+                    <select name="f">
+                        <option disabled>Оберіть частоту</option>
+                        <option selected value="1">Раз на тиждень</option>
+                        <option value="2">Раз на два тижні</option>
+                        <option value="3">Раз на три тижні</option>
+                    </select>
+                </li>
+            </ul>
+        </p>
+        <p>
+            <ul>
+                <li><h1>{{ form.dateFrom.label}} </h1>{{form.dateFrom}}</li>
+                <li><h1>{{ form.dateTo.label}}   </h1>{{form.dateTo}}</li>
+            </ul>
+        </p>
+        {% if message%}
+        <div class="message">
+            {{message}}
+        </div>
+        {% endif %}
+        <button class="btn" type="submit"> Додати </button>
+    </form>
+</div>
+{% endblock %}

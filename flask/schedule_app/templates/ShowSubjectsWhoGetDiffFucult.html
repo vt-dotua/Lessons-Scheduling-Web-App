@@ -1,0 +1,37 @@
+﻿{% extends "layout.html" %}
+{% block content %}
+<div class="ShowTable clearfix mTop ">
+
+    <h1> Дисципліни які відвідують студенти різних факультетів </h1>
+    <div class="manage-form mBottom">
+        <form class="textCenter" name="input_data" action="/ShowSubjectsWhoGetDiffFucult" method="POST">
+            {{ form.hidden_tag() }}
+            <h1> Заповніть дату початку і кінця семестру </h1>
+            <ul>
+                <li><h1>{{ form.dateFrom.label}} </h1>{{form.dateFrom}}</li>
+                <li><h1>{{ form.dateTo.label}}   </h1>{{form.dateTo}}</li>
+            </ul>
+            </p>
+            {% if message%}
+            <div class="message">
+                {{message}}
+            </div>
+            {% endif %}
+            <button class="btn" type="submit"> Дізнатися </button>
+        </form>
+    </div>
+
+    {% if VS %}
+    <table class="fontSizeBig top">
+        <tr>
+            <th>Назва предмета</th>
+        </tr>
+        {% for s in VS %}
+        <tr>
+            <td>{{ s[0] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</div>
+{% endblock %}

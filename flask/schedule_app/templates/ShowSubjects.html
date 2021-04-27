@@ -1,0 +1,32 @@
+﻿{% extends "layout.html" %}
+
+
+{% block content %}
+<div class="ManuForShowTable clearfix">
+    <ul>
+        <li><a href="{{ url_for('ShowSubjects') }}">   Предмети  </a></li>
+        <li><a href="{{ url_for('ShowStudens') }}">    Студенти  </a></li>
+        <li><a href="{{ url_for('ShowTeachers') }}">   Викладачі </a></li>
+        <li><a href="{{ url_for('ShowGroups') }}">     Групи     </a></li>
+        <li><a href="{{ url_for('ShowClassrooms') }}"> Аудиторії </a></li>
+        <li><a href="{{ url_for('ShowLessons') }}">    Заняття     </a></li>
+        <li><a href="{{ url_for('ShowDepartment') }}"> Факультети</a></li>
+    </ul>
+</div>
+
+<div class="ShowTable clearfix">
+    <h1> Предмети, які вивчают студенти </h1>
+    <table class="fontSizeBig">
+        <tr>
+            <th>id предмета</th>
+            <th>Назва предмета</th>
+        </tr>
+        {% for s in vSubjects %}
+        <tr>
+            <td>{{ s[0] }}</td>
+            <td>{{ s[1] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+﻿{% extends "base.html" %}
+{% block layout %}
+<header class="header-shadow">
+    {% if session['logged_in'] %}
+    <div class="userInfo">
+        <h1> {{session['name']}} {{session['surname']}} </h1>
+    </div>
+    {% endif %}
+    <div class="lr">
+        <ul>
+            {% if session['logged_in'] %}
+                <li><a href="{{ url_for('logout') }}">Вихід</a></li>
+            {% else %}
+                <li><a href="{{ url_for('login') }}">Вхід</a></li>
+            {% endif %}
+            <li><a href="{{ url_for('signup') }}">Реєстрація</a></li>
+        </ul>
+    </div>
+</header>
+    <div class="flex-container">
+        <div class = "menu my-flex-box shadow">
+            <ul>
+                <li> <a href="/">Дізнатися розклад </a></li>
+                {% if session['admin'] %}
+                <li><a href="{{url_for('.InsertLessons')}}"> Управління даними </a></li>
+                {% endif %}
+                <li><a href="{{ url_for('ShowSubjects')}}"> Переглянути таблиці </a></li>
+                <li><a href="{{ url_for('ShowInfoGroupSubject')}} "> Які предмети вивчає група X?</a></li>
+                <li><a href="{{ url_for('ShowInfoAmountSubjectNextDay') }}"> Скільки дисциплін проводят завтра в корпусі Х? </a></li>
+                <li><a href="{{ url_for('ShowClassDay') }}"> У які дні в аудиторії Х немає пар, а в інших аудиторіях є? </a></li>
+                <li><a href="{{ url_for('ShoWhoHasTwoInDiff') }}"> Список викладачів у яких на цьому тижні дві пари підряд в різних корпусах </a></li>
+                <li><a href="{{ url_for('ShowSubjectsWhoGetDiffFucult') }}"> Дісципліни які відвідують студенти різних факультетів </a></li>
+                <li><a href="{{ url_for('ShowTeachersMaxCorpus')}}"> Викладачі які провели в цьому місяці найбільшу кількість пар в різних корпусах</a></li>
+                <li><a href="{{ url_for('ShowTeachersWhoHasNowTwoPara')}}" id="lastLi"> Викладачі у яких на цьому тижні одночасно стоїть дві пари в різних аудиторіях </a>
+            </ul>
+        </div>
+
+        <div class="content my-flex-box">
+            {% block content %} {% endblock %}
+        </div>
+    </div>
+{% endblock %}

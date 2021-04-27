@@ -1,0 +1,26 @@
+﻿{% extends "layout.html" %}
+{% block content %}
+<div class="ShowTable clearfix mTop centerW">
+    <h1 class="line_height35">Список викладачів у яких на цьому тижні дві пари підряд в різних корпусах</h1>
+    {% if vListTeachers %}
+    <table class="fontSizeBig">
+        <tr>
+            <th>id</th>
+            <th>Призвище</th>
+            <th>І'мя</th>
+            <th>По батьку</th>
+        </tr>
+        {% for v in vListTeachers %}
+        <tr>
+            <td>{{ v[0] }}</td>
+            <td>{{ v[1] }}</td>
+            <td>{{ v[2] }}</td>
+            <td>{{ v[3] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <h1> Викладачів не знайдено </h1>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+﻿{% extends "layout.html" %}
+{% block content %}
+<div class="ShowTable clearfix">
+    <h1></h1>
+    <h1> Дізнатися які предмети вивчає група X </h1>
+    <div class="formInfo">
+        <form action="/ShowInfoGroupSubject" method="POST">
+            <p>
+                <h1> Оберіть групу </h1>
+                <select name="Groups">
+                    {% for elem in vGroups %}
+                    <option>{{ elem[1] }}</option>
+                    {% endfor %}
+                </select>
+            </p>
+            <button class="btn" type="submit"> Дізнатися </button>
+        </form>
+    </div>
+
+    {% if message %}
+    <h1> {{message}} </h1>
+    {% endif %}
+
+    {% if vSubject %}
+    <table class="fontSizeBig">
+        <tr>
+            <th>Назва предмета</th>
+        </tr>
+        {% for s in vSubject %}
+        <tr>
+            <td>{{ s[0] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</div>
+{% endblock %}

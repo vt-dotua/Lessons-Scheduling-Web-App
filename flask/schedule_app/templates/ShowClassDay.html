@@ -1,0 +1,38 @@
+﻿{% extends "layout.html" %}
+{% block content %}
+<div class="ShowTable clearfix">
+    <h1></h1>
+    <h1> Дізнатися у які дні в аудиторії Х немає пар, а в інших аудиторіях є? </h1>
+    <div class="formInfo manage-form">
+        <form action="/ShowClassDay" method="POST">
+            <p>
+                <h1> Оберіть аудиторію </h1>
+                {{form.d}}
+                <datalist id="id">
+                    {% for a in vClassrooms %}
+                    <option value="{{a[2]}}-{{a[1]}}"></option>
+                    {% endfor%}
+                </datalist>
+            </p>
+            <button class="btn" type="submit"> Дізнатися </button>
+        </form>
+    </div>
+
+    {% if message %}
+    <h1> {{message}} </h1>
+    {% endif %}
+
+    {% if vDay %}
+    <table class="fontSizeBig">
+        <tr>
+            <th>Дні</th>
+        </tr>
+        {% for s in vDay %}
+        <tr>
+            <td>{{ s[0] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</div>
+{% endblock %}

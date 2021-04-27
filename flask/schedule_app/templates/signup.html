@@ -1,0 +1,50 @@
+﻿{% extends "base.html" %}
+
+{% block singup %}
+
+<div class="wrap-form">
+    <div class="form-login shadow">
+        <form class="form-singup" method="POST" action="/signup">
+            <h1>Реєстрація</h1>
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.username.label}}<br>
+                {{ form.username }}
+            </p>
+            <p>
+                {{ form.email.label}}<br>
+                {{ form.email }}
+            </p>
+            <p>
+                {{ form.surname.label }}<br>
+                {{ form.surname }}<br>
+            </p>
+            <p>
+                {{ form.name.label }}<br>
+                {{ form.name }}<br>
+            </p>
+            <p>
+                {{ form.ochestvo.label }}<br>
+                {{ form.ochestvo }}<br>
+            </p>
+            <p>
+                {{ form.password.label }}<br>
+                {{ form.password }}<br>
+            </p>
+            <p>
+                {{ form.remember }}<br>
+            </p>
+            <p>
+                <button class="btn" type="submit"> Sing up </button>
+
+            </p>
+            {% if message%}
+            <div class="message">
+                {{message}}
+            </div>
+            {% endif %}
+        </form>
+    </div>
+</div>
+    {% endblock %}
+

@@ -1,0 +1,62 @@
+﻿{% extends "layout.html" %}
+{% block content %}
+<div class="ManuForShowTable clearfix">
+    <ul>
+        <li><a href="{{url_for('InsertLessons')}}"> Заняття  </a></li>
+        <li><a href="{{url_for('InsertSubjects')}}">   Предмети  </a></li>
+        <li><a href="{{url_for('InsertStudens')}}">    Студенти  </a></li>
+        <li><a href="{{url_for('InsertTeachers')}}">   Викладачі </a></li>
+        <li><a href="{{url_for('InsertGroups')}}"> Групи  </a></li>
+        <li><a href="{{ url_for('InsertClassrooms')}}"> Аудиторії </a></li>
+        <li><a href="{{ url_for('InsertDepartment')}}"> Факультети</a></li>
+    </ul>
+</div>
+
+<div class="ManuForShowTable clearfix top">
+    <h1 id="title"> Оберіть дію </h1>
+    <div class="center">
+        <ul>
+            <li><a href="{{url_for('InsertTeachers')}}">   Додати  </a></li>
+            <li><a href="{{url_for('UpdateTeachers')}}">    Змінити  </a></li>
+            <li><a href="{{url_for('DeleteTeachers')}}">   Видалити </a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="manage-form top">
+    <form name="input_data" action="/InsertTeachers" method="POST">
+        {{ form.hidden_tag() }}
+        <h1 id="title"> Додати викладача</h1>
+        <p>
+            <ul>
+                <li>
+                    <h1> {{form.surname.label}} </h1>
+                    {{form.surname}}
+                </li>
+            </ul>
+        </p>
+        <p>
+            <ul>
+                <li>
+                    <h1> {{form.name.label}} </h1>
+                    {{form.name}}
+                </li>
+            </ul>
+        </p>
+        <p>
+            <ul>
+                <li>
+                    <h1> {{form.ochestvo.label}} </h1>
+                    {{form.ochestvo}}
+                </li>
+            </ul>
+        </p>
+        {% if message%}
+        <div class="message">
+            {{message}}
+        </div>
+        {% endif %}
+        <button class="btn" type="submit" name="btn" value="1"> Додати </button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,73 @@
+﻿{% extends "layout.html" %}
+{% block content %}
+<div class="ManuForShowTable clearfix">
+    <ul>
+        <li><a href="{{url_for('InsertLessons')}}"> Заняття  </a></li>
+        <li><a href="{{url_for('InsertSubjects')}}">   Предмети  </a></li>
+        <li><a href="{{url_for('InsertStudens')}}">    Студенти  </a></li>
+        <li><a href="{{url_for('InsertTeachers')}}">   Викладачі </a></li>
+        <li><a href="{{url_for('InsertGroups')}}"> Групи  </a></li>
+        <li><a href="{{ url_for('InsertClassrooms')}}"> Аудиторії </a></li>
+        <li><a href="{{ url_for('InsertDepartment')}}"> Факультети</a></li>
+    </ul>
+</div>
+
+<div class="ManuForShowTable clearfix top">
+    <h1 id="title"> Оберіть дію </h1>
+    <div class="center">
+        <ul>
+            <li><a href="{{url_for('InsertGroups')}}"> Додати </a></li>
+            <li><a href="{{url_for('UpdateGroups')}}">    Змінити  </a></li>
+            <li><a href="{{url_for('DeleteGroups')}}">   Видалити </a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="manage-form top">
+    <form name="input_data" action="/UpdateGroups" method="POST">
+        {{ form.hidden_tag() }}
+        <h1 id="title"> Додати групу</h1>
+        <p>
+            <ul>
+                <li>
+                    <h1> {{form.idG.label}} </h1>
+                    {{form.idG}}
+                    <datalist id="ig">
+                        {% for g in vGroups %}
+                        <option value="{{g[0]}}"> {{g[1]}} | {{g[2]}} </option>
+                        {% endfor %}
+                    </datalist>
+                </li>
+            </ul>
+        </p>
+        <p>
+            <ul>
+                <li><h1>Заповніть параметри, які хочете змінити</h1></li>
+            </ul>
+        </p>
+        <p>
+            <ul>
+                <li>
+                    <h1> {{form.groups.label}} </h1>
+                    {{form.groups}}
+                </li>
+                <li>
+                    <h1> {{form.facult.label}} </h1>
+                    {{form.facult}}
+                    <datalist id="f">
+                        {% for d in vDepartment %}
+                        <option value="{{d[0]}}"> {{d[1]}} </option>
+                        {% endfor%}
+                    </datalist>
+                </li>
+            </ul>
+        </p>
+        {% if message%}
+        <div class="message">
+            {{message}}
+        </div>
+        {% endif %}
+        <button class="btn" type="submit"> Змінити </button>
+    </form>
+</div>
+{% endblock %}
