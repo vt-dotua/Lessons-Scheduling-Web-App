@@ -1,4 +1,4 @@
-﻿# The Schedule Web App
+﻿# Lessons Scheduling Web App
 The Schedule Web Application is an information system for creating and showing a timetable for students and teachers.
 ## Table of Contents
 - [About](#about)
